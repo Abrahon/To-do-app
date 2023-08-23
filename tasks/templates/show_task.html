@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-3xl text-center font-semibold my-3 text-green-500"> Programming Task  Table</h1>
+
+
+<div class="relative overflow-x-auto sm:rounded-lg">
+
+    {% if data%}
+    <table class="w-80% mx-auto text-sm text-left text-blue-100 dark:text-blue-100">
+        <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    #id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data%}
+
+            <tr class="bg-blue-500 border-b border-blue-400">
+             
+                <td class="px-6 py-4">
+                    {{item.id}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.title}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.description}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.status}}
+                </td>
+              
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-none text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><a href="{% url 'delete_task' id=item.id %}">Delete</a></button>
+                    <button type="button" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-none text-sm px-3 py-2 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"><a href="{% url 'edit_task' id=item.id %}">Edit</a></button>
+                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-none text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><a href="{% url 'complete_task' id=item.id %}">Complete</a></button>
+                </td>
+            </tr>
+            {% endfor %}
+ 
+        </tbody>
+        {% else%}
+
+        <h1 class="text-red-700 text-center text-3xl ">No data available this table </h1>
+        {% endif %}
+    </table>
+</div>
+
+{% endblock %}
+
